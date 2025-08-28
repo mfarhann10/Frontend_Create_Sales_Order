@@ -6,6 +6,8 @@ import { ProductVariant } from "../features/ProductVariant";
 import { TotalCalculation } from "../features/TotalCalculation";
 import { Payment } from "../features/Payment";
 import { DesignUpload } from "../features/DesignUpload";
+import { useResultOrderStore } from "../store/ResultOrderStore";
+import { useNavigate } from "react-router-dom";
 
 export interface ProductVariant {
   id: string;
@@ -90,6 +92,8 @@ export interface FormData {
 }
 
 const SalesOrderForm: React.FC = () => {
+  const navigate = useNavigate();
+  const { setResultOrderData } = useResultOrderStore();
   const methods = useForm<FormData>({
     defaultValues: {
       customer: "",
@@ -147,7 +151,10 @@ const SalesOrderForm: React.FC = () => {
 
   const onSubmit = methods.handleSubmit((data) => {
     console.log(data);
+    setResultOrderData(data);
     methods.reset();
+
+    navigate("/result");
   });
 
   return (
