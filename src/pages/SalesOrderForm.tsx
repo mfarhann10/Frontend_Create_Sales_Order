@@ -1,11 +1,7 @@
-import React, { useState } from 'react';
-import { DesignUpload } from '../features/DesignUpload';
-import { OrderData } from '../features/OderData';
-import { Payment } from '../features/Payment';
-import { ProductDetail } from '../features/ProductDetail';
-import { ProductVariant } from '../features/ProductVariant';
-import { TotalCalculation } from '../features/TotalCalculation';
-import { useForm } from 'react-hook-form';
+import React from "react";
+import { useForm } from "react-hook-form";
+import { OrderData } from "../features/OderData";
+import { ProductDetail } from "../features/ProductDetail";
 
 export interface ProductVariant {
   id: string;
@@ -42,7 +38,7 @@ export interface FormData {
   duePayment: string;
   spkDate: string;
   priority: boolean;
-  
+
   // Product Details
   materialDetail: {
     category: string;
@@ -63,91 +59,93 @@ export interface FormData {
     inputColor: string;
     expandableInput: string;
   };
-  
+
   // Product Variants
   variants: ProductVariant[];
-  
+
   // Shipping
   shipping: {
     category: string;
     weight: number;
     price: number;
   };
-  
+
   // Additions and Deductions
   additions: Addition[];
   deductions: Deduction[];
-  
+
   // Payment
   wallet: string;
   paymentAmount: number;
   paymentDate: string;
   attachment: File | null;
-  
+
   // Design
   designFile: File | null;
   designNote: string;
 }
 
 const SalesOrderForm: React.FC = () => {
-
-  const {handleSubmit, register, setValue, control, reset} = useForm<FormData>({
-    defaultValues: {
-      customer: '',
-      address: '',
-      orderName: '',
-      product: '',
-      segment: '',
-      date: '',
-      duePayment: '',
-      spkDate: '',
-      priority: false,
-      materialDetail: {
-        category: '',
-        material: '',
-        inputColor: '',
-        expandableInput: ''
+  const { handleSubmit, register, setValue, control, reset } =
+    useForm<FormData>({
+      defaultValues: {
+        customer: "",
+        address: "",
+        orderName: "",
+        product: "",
+        segment: "",
+        date: "",
+        duePayment: "",
+        spkDate: "",
+        priority: false,
+        materialDetail: {
+          category: "",
+          material: "",
+          inputColor: "",
+          expandableInput: "",
+        },
+        productNote: "",
+        printingDetail: {
+          category: "",
+          material: "",
+          inputColor: "",
+          expandableInput: "",
+        },
+        embroideryDetail: {
+          category: "",
+          material: "",
+          inputColor: "",
+          expandableInput: "",
+        },
+        variants: [
+          {
+            id: "1",
+            variant: "",
+            subVariant: "",
+            price: 0,
+            sizes: {},
+          },
+        ],
+        shipping: {
+          category: "",
+          weight: 0,
+          price: 0,
+        },
+        additions: [],
+        deductions: [],
+        wallet: "",
+        paymentAmount: 0,
+        paymentDate: "",
+        attachment: null,
+        designFile: null,
+        designNote: "",
       },
-      productNote: '',
-      printingDetail: {
-        category: '',
-        material: '',
-        inputColor: '',
-        expandableInput: ''
-      },
-      embroideryDetail: {
-        category: '',
-        material: '',
-        inputColor: '',
-        expandableInput: ''
-      },
-      variants: [{
-        id: '1',
-        variant: '',
-        subVariant: '',
-        price: 0,
-        sizes: {}
-      }],
-      shipping: {
-        category: '',
-        weight: 0,
-        price: 0
-      },
-      additions: [],
-      deductions: [],
-      wallet: '',
-      paymentAmount: 0,
-      paymentDate: '',
-      attachment: null,
-      designFile: null,
-      designNote: ''
-    }
-  })
+    });
 
   const onSubmit = (data: FormData) => {
-    console.log(data)
-    reset()
-  }
+    console.log(data);
+    reset();
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 py-8">
@@ -155,13 +153,21 @@ const SalesOrderForm: React.FC = () => {
         <div className="bg-white rounded-lg shadow-lg">
           {/* Header */}
           <div className="px-6 py-4 border-b border-gray-200 text-center">
-            <h1 className="text-2xl font-bold text-gray-900">Create Sales Order</h1>
+            <h1 className="text-2xl font-bold text-gray-900">
+              Create Sales Order
+            </h1>
           </div>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="p-6 space-y-8">
               {/* Order Data Section */}
-              <OrderData register={register} setValue={setValue} control={control}/>
+              <OrderData
+                register={register}
+                setValue={setValue}
+                control={control}
+              />
 
+              {/* Product Detail Section */}
+              <ProductDetail register={register} />
 
               <div className="flex justify-end space-x-4 pt-6 border-t border-gray-200">
                 <button
@@ -180,10 +186,10 @@ const SalesOrderForm: React.FC = () => {
 };
 
 // Add Calculator import
-const Calculator = ({ className }: { className?: string }) => (
+/* const Calculator = ({ className }: { className?: string }) => (
   <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
   </svg>
-);
+); */
 
 export default SalesOrderForm;
