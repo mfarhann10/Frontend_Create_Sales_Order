@@ -1,11 +1,14 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import SalesOrderForm from "./pages/SalesOrderForm";
+
 function App() {
-
-
   return (
-    <div className='flex items-center justify-between align-middle'>
-      <p className='text-blue-400 text-center font-bold'>Test</p>
-    </div>
-  )
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<SalesOrderForm />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;

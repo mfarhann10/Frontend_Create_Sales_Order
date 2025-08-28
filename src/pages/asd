@@ -1,0 +1,16 @@
+              {/* Product Detail Section */}
+            {/* <ProductDetail formData={formData} setFormData={setFormData}/> */}
+
+              {/* Product Variant Section */}
+              {/* <ProductVariant formData={formData} setFormData={setFormData}/> */}
+
+              {/* Total Calculation Section */}
+              {/* <TotalCalculation formData={formData} setFormData={setFormData}/> */}
+
+              {/* Payment Section */}
+              {/* <Payment formData={formData} setFormData={setFormData}/> */}
+
+              {/* Design Section */}
+              {/* <DesignUpload formData={formData} setFormData={setFormData}/> */}
+
+              {/* Action Buttons */}
