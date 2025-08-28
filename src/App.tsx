@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import SalesOrderForm from "./pages/SalesOrderForm";
+import { SalesOrderForm } from "./pages/SalesOrderForm";
 import { ResultOrder } from "./pages/ResultOrder";
 
 function App() {

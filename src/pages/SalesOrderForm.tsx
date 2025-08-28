@@ -1,13 +1,12 @@
-import React from "react";
 import { FormProvider, useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import { DesignUpload } from "../features/DesignUpload";
 import { OrderData } from "../features/OderData";
+import { Payment } from "../features/Payment";
 import { ProductDetail } from "../features/ProductDetail";
 import { ProductVariant } from "../features/ProductVariant";
 import { TotalCalculation } from "../features/TotalCalculation";
-import { Payment } from "../features/Payment";
-import { DesignUpload } from "../features/DesignUpload";
 import { useResultOrderStore } from "../store/ResultOrderStore";
-import { useNavigate } from "react-router-dom";
 
 export interface ProductVariant {
   id: string;
@@ -91,7 +90,7 @@ export interface FormData {
   designNote: string;
 }
 
-const SalesOrderForm: React.FC = () => {
+export const SalesOrderForm = () => {
   const navigate = useNavigate();
   const { setResultOrderData } = useResultOrderStore();
   const methods = useForm<FormData>({
@@ -204,12 +203,3 @@ const SalesOrderForm: React.FC = () => {
     </div>
   );
 };
-
-// Add Calculator import
-/* const Calculator = ({ className }: { className?: string }) => (
-  <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-  </svg>
-); */
-
-export default SalesOrderForm;

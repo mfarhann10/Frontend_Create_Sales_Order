@@ -1,8 +1,6 @@
-import React from "react";
 import { useResultOrderStore } from "../store/ResultOrderStore";
 
-
-export const ResultOrder: React.FC = () => {
+export const ResultOrder = () => {
   const { resultOrderData } = useResultOrderStore();
 
   if (!resultOrderData) {
@@ -20,15 +18,33 @@ export const ResultOrder: React.FC = () => {
       {/* Customer Info */}
       <div className="bg-gray-100 p-4 rounded-lg shadow mb-6">
         <h2 className="text-xl font-semibold mb-2">Customer Info</h2>
-        <p><strong>Customer:</strong> {resultOrderData.customer}</p>
-        <p><strong>Address:</strong> {resultOrderData.address}</p>
-        <p><strong>Order Name:</strong> {resultOrderData.orderName}</p>
-        <p><strong>Product:</strong> {resultOrderData.product}</p>
-        <p><strong>Segment:</strong> {resultOrderData.segment}</p>
-        <p><strong>Date:</strong> {resultOrderData.date}</p>
-        <p><strong>SPK Date:</strong> {resultOrderData.spkDate}</p>
-        <p><strong>Due Payment:</strong> {resultOrderData.duePayment}</p>
-        <p><strong>Priority:</strong> {resultOrderData.priority ? "Yes" : "No"}</p>
+        <p>
+          <strong>Customer:</strong> {resultOrderData.customer}
+        </p>
+        <p>
+          <strong>Address:</strong> {resultOrderData.address}
+        </p>
+        <p>
+          <strong>Order Name:</strong> {resultOrderData.orderName}
+        </p>
+        <p>
+          <strong>Product:</strong> {resultOrderData.product}
+        </p>
+        <p>
+          <strong>Segment:</strong> {resultOrderData.segment}
+        </p>
+        <p>
+          <strong>Date:</strong> {resultOrderData.date}
+        </p>
+        <p>
+          <strong>SPK Date:</strong> {resultOrderData.spkDate}
+        </p>
+        <p>
+          <strong>Due Payment:</strong> {resultOrderData.duePayment}
+        </p>
+        <p>
+          <strong>Priority:</strong> {resultOrderData.priority ? "Yes" : "No"}
+        </p>
       </div>
 
       {/* Variants */}
@@ -50,9 +66,15 @@ export const ResultOrder: React.FC = () => {
       {/* Shipping */}
       <div className="bg-gray-100 p-4 rounded-lg shadow mb-6">
         <h2 className="text-xl font-semibold mb-2">Shipping</h2>
-        <p><strong>Category:</strong> {resultOrderData.shipping.category}</p>
-        <p><strong>Weight:</strong> {resultOrderData.shipping.weight} kg</p>
-        <p><strong>Price:</strong> Rp {resultOrderData.shipping.price}</p>
+        <p>
+          <strong>Category:</strong> {resultOrderData.shipping.category}
+        </p>
+        <p>
+          <strong>Weight:</strong> {resultOrderData.shipping.weight} kg
+        </p>
+        <p>
+          <strong>Price:</strong> Rp {resultOrderData.shipping.price}
+        </p>
       </div>
 
       {/* Additions */}
@@ -90,23 +112,34 @@ export const ResultOrder: React.FC = () => {
       {/* Payment */}
       <div className="bg-gray-100 p-4 rounded-lg shadow mb-6">
         <h2 className="text-xl font-semibold mb-2">Payment</h2>
-        <p><strong>Wallet:</strong> Rp {resultOrderData.wallet}</p>
-        <p><strong>Payment Amount:</strong> Rp {resultOrderData.paymentAmount}</p>
-        <p><strong>Payment Date:</strong> {resultOrderData.paymentDate}</p>
+        <p>
+          <strong>Wallet:</strong> Rp {resultOrderData.wallet}
+        </p>
+        <p>
+          <strong>Payment Amount:</strong> Rp {resultOrderData.paymentAmount}
+        </p>
+        <p>
+          <strong>Payment Date:</strong> {resultOrderData.paymentDate}
+        </p>
         {resultOrderData.attachment && (
-          <p><strong>Attachment:</strong> {resultOrderData.attachment.name}</p>
+          <p>
+            <strong>Attachment:</strong> {resultOrderData.attachment.name}
+          </p>
         )}
       </div>
 
       {/* Design */}
       <div className="bg-gray-100 p-4 rounded-lg shadow">
         <h2 className="text-xl font-semibold mb-2">Design</h2>
-        <p><strong>Note:</strong> {resultOrderData.designNote}</p>
+        <p>
+          <strong>Note:</strong> {resultOrderData.designNote}
+        </p>
         {resultOrderData.designFile && (
-          <p><strong>Design File:</strong> {resultOrderData.designFile.name}</p>
+          <p>
+            <strong>Design File:</strong> {resultOrderData.designFile.name}
+          </p>
         )}
       </div>
     </div>
   );
 };
-
