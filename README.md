@@ -14,16 +14,6 @@ This project demonstrates usage of **React Hook Form (RHF)** for form handling a
 - **Sales Order Form** → Input order data (managed with RHF).
 - **Result Page** → Display submitted data from Zustand state.
 
-## Project Structures
-src/
- ├─ pages/
- │   ├─ SalesOrderForm.tsx   # Form with RHF
- │   └─ Result.tsx           # Show submitted data from Zustand
- ├─ store/
- │   └─ resultOrderStore.ts  # Zustand store
- ├─ main.tsx                 # Entry point
- └─ App.tsx                  # Router setup
-
 ## Tech Stack
 - React 19
 - Vite
