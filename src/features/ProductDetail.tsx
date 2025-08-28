@@ -1,12 +1,8 @@
 import { Package } from "lucide-react";
-import { type UseFormRegister } from "react-hook-form";
-import type { FormData } from "../pages/SalesOrderForm";
+import { useFormContext } from "react-hook-form";
 
-type ProductDetailProps = {
-  register: UseFormRegister<FormData>;
-};
-
-export const ProductDetail = ({ register }: ProductDetailProps) => {
+export const ProductDetail = () => {
+  const { register } = useFormContext();
   return (
     <div className="space-y-6">
       <div className="flex items-center space-x-2">

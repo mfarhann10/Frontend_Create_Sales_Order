@@ -1,7 +1,11 @@
 import React from "react";
-import { useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import { OrderData } from "../features/OderData";
 import { ProductDetail } from "../features/ProductDetail";
+import { ProductVariant } from "../features/ProductVariant";
+import { TotalCalculation } from "../features/TotalCalculation";
+import { Payment } from "../features/Payment";
+import { DesignUpload } from "../features/DesignUpload";
 
 export interface ProductVariant {
   id: string;
@@ -75,7 +79,7 @@ export interface FormData {
   deductions: Deduction[];
 
   // Payment
-  wallet: string;
+  wallet: number;
   paymentAmount: number;
   paymentDate: string;
   attachment: File | null;
@@ -86,66 +90,65 @@ export interface FormData {
 }
 
 const SalesOrderForm: React.FC = () => {
-  const { handleSubmit, register, setValue, control, reset } =
-    useForm<FormData>({
-      defaultValues: {
-        customer: "",
-        address: "",
-        orderName: "",
-        product: "",
-        segment: "",
-        date: "",
-        duePayment: "",
-        spkDate: "",
-        priority: false,
-        materialDetail: {
-          category: "",
-          material: "",
-          inputColor: "",
-          expandableInput: "",
-        },
-        productNote: "",
-        printingDetail: {
-          category: "",
-          material: "",
-          inputColor: "",
-          expandableInput: "",
-        },
-        embroideryDetail: {
-          category: "",
-          material: "",
-          inputColor: "",
-          expandableInput: "",
-        },
-        variants: [
-          {
-            id: "1",
-            variant: "",
-            subVariant: "",
-            price: 0,
-            sizes: {},
-          },
-        ],
-        shipping: {
-          category: "",
-          weight: 0,
-          price: 0,
-        },
-        additions: [],
-        deductions: [],
-        wallet: "",
-        paymentAmount: 0,
-        paymentDate: "",
-        attachment: null,
-        designFile: null,
-        designNote: "",
+  const methods = useForm<FormData>({
+    defaultValues: {
+      customer: "",
+      address: "",
+      orderName: "",
+      product: "",
+      segment: "",
+      date: "",
+      duePayment: "",
+      spkDate: "",
+      priority: false,
+      materialDetail: {
+        category: "",
+        material: "",
+        inputColor: "",
+        expandableInput: "",
       },
-    });
+      productNote: "",
+      printingDetail: {
+        category: "",
+        material: "",
+        inputColor: "",
+        expandableInput: "",
+      },
+      embroideryDetail: {
+        category: "",
+        material: "",
+        inputColor: "",
+        expandableInput: "",
+      },
+      variants: [
+        {
+          id: "1",
+          variant: "",
+          subVariant: "",
+          price: 0,
+          sizes: {},
+        },
+      ],
+      shipping: {
+        category: "",
+        weight: 0,
+        price: 0,
+      },
+      additions: [],
+      deductions: [],
+      wallet: 0,
+      paymentAmount: 0,
+      paymentDate: "",
+      attachment: null,
+      designFile: null,
+      designNote: "",
+    },
+  });
 
-  const onSubmit = (data: FormData) => {
+  const onSubmit = methods.handleSubmit((data) => {
     console.log(data);
-    reset();
-  };
+    methods.reset();
+  });
 
   return (
     <div className="min-h-screen bg-gray-50 py-8">
@@ -157,28 +160,38 @@ const SalesOrderForm: React.FC = () => {
               Create Sales Order
             </h1>
           </div>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="p-6 space-y-8">
-              {/* Order Data Section */}
-              <OrderData
-                register={register}
-                setValue={setValue}
-                control={control}
-              />
+          <FormProvider {...methods}>
+            <form onSubmit={onSubmit}>
+              <div className="p-6 space-y-8">
+                {/* Order Data Section */}
+                <OrderData />
 
-              {/* Product Detail Section */}
-              <ProductDetail register={register} />
+                {/* Product Detail Section */}
+                <ProductDetail />
 
-              <div className="flex justify-end space-x-4 pt-6 border-t border-gray-200">
-                <button
-                  type="submit"
-                  className="px-6 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-                >
-                  Submit Order
-                </button>
+                {/* Product Variant Section */}
+                <ProductVariant />
+
+                {/* Total Calculation Section */}
+                <TotalCalculation />
+
+                {/* Payment */}
+                <Payment />
+
+                {/* Design */}
+                <DesignUpload />
+
+                <div className="flex justify-end space-x-4 pt-6 border-t border-gray-200">
+                  <button
+                    type="submit"
+                    className="px-6 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                  >
+                    Submit Order
+                  </button>
+                </div>
               </div>
-            </div>
-          </form>
+            </form>
+          </FormProvider>
         </div>
       </div>
     </div>
